@@ -39,23 +39,23 @@ x_train=np.reshape(data_X_train,(-1,timesteps,2))
 y_train=np.array(data_Y_train)
 
 
-inputs=Input(shape=(timesteps,feature))
-LSTM_1=LSTM(30,activation='relu',return_sequences=True)(inputs)
-Dense_1=Dense(60)(LSTM_1)
-# dropout=Dropout(0.5)(Dense_1)
-LSTM_2=LSTM(30,activation='relu')(Dense_1)
-
-output=Dense(2,activation='tanh')(LSTM_2)
-
-
-model=Model(inputs=inputs,outputs=output)
-model.compile(loss='mae', optimizer='adam')
-model.fit(x_train,y_train,batch_size=1,epochs=2,shuffle=False,verbose=1)
-model.save('model_10000_relu_2layers.h5')
-# model=load_model('model_10000_relu_2layers.h5')
+# inputs=Input(shape=(timesteps,feature))
+# LSTM_1=LSTM(30,activation='relu',return_sequences=True)(inputs)
+# Dense_1=Dense(60)(LSTM_1)
+# # dropout=Dropout(0.5)(Dense_1)
+# LSTM_2=LSTM(30,activation='relu')(Dense_1)
+#
+# output=Dense(2,activation='tanh')(LSTM_2)
+#
+#
+# model=Model(inputs=inputs,outputs=output)
+# model.compile(loss='mae', optimizer='adam')
+# model.fit(x_train,y_train,batch_size=1,epochs=2,shuffle=False,verbose=1)
+# model.save('model_10000_relu_2layers.h5')
+model=load_model('model_10000_relu_2layers.h5')
 
 
 
 y_predit=model.predict(x_train)
 
-draw_line(y_train[:,0][0:3000],y_train[:,1][0:3000],y_predit[:,1][0:3000])
+draw_line(y_train[:,0][0:30000],y_train[:,1][0:30000],y_predit[:,1][0:30000])

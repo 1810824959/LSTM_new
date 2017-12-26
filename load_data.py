@@ -42,7 +42,7 @@ def load_data():
 
     Z=np.vstack((X,Y)).T
     Z = min_max_scaler.fit_transform(Z)
-    return Z[:10000],Z[100000:12000]
+    return Z[:65000],Z[65000:77911]
 
 
 if __name__ == '__main__':
